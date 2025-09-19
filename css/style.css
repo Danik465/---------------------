@@ -223,25 +223,7 @@ opacity: 1;
 }
 }
 
-.sheriff-icon {
-content: url("/Roles/Шериф.svg");
-}
-
-.don-icon {
-content: url("/Roles/Дон.svg");
-}
-
-.voted-icon {
-content: url("/icons/vote.svg");
-}
-
-.shot-icon {
-content: url("/icons/kill.svg");
-}
-
-.removed-icon {
-content: url("/icons/delete.svg");
-}
+/* УДАЛЕНО: CSS-правила с content: url() - они перенесены в JavaScript */
 
 .card.voted:hover, .card.shot:hover {
 transform: translateY(10px);
@@ -429,7 +411,6 @@ overflow-x: auto;
 padding: 10px;
 }
 
-text
 .card-wrapper {
     min-width: 150px;
 }
