@@ -150,7 +150,7 @@
 
 
                 // Сбрасываем состояние имени
-                nameElement.classList.remove('voted', 'shot');
+                nameElement.classList.remove('voted', 'shot','removed');
 
                 // Сбрасываем имя
                 if (nameSelect) {
@@ -180,7 +180,7 @@
                 
                 // Сбрасываем статус
                 statusIcon.style.display = 'none';
-                card.classList.remove('voted', 'shot');
+                card.classList.remove('voted', 'shot','removed');
 
                 // Сбрасываем карточку мафии
                 mafiaCard.style.display = 'none';
@@ -377,29 +377,37 @@
                     
                     // Устанавливаем статус плашки
                     if (status === 'voted') {
-                        card.classList.remove('shot');
+                        card.classList.remove('shot', 'removed');
                         card.classList.add('voted');
                         statusIcon.className = 'status-icon voted-icon';
                     // Добавляем класс для имени
-                    nameElement.classList.remove('shot');
+                    nameElement.classList.remove('shot', 'removed');
                     nameElement.classList.add('voted');
 
                     } else if (status === 'shot') {
-                        card.classList.remove('voted');
+                        card.classList.remove('voted','removed');
                         card.classList.add('shot');
                         statusIcon.className = 'status-icon shot-icon';
                          // Добавляем класс для имени
-                        nameElement.classList.remove('voted');
+                        nameElement.classList.remove('voted', 'removed');
                         nameElement.classList.add('shot');
+                    }else if (status === 'removed') {
+                        card.classList.remove('voted', 'shot');
+                        card.classList.add('removed');
+                        statusIcon.className = 'status-icon removed-icon';
+                        
+                        // Добавляем класс для имени
+                        nameElement.classList.remove('voted', 'shot');
+                        nameElement.classList.add('removed');
                     }
-                    
+                                
                     // Показываем значок статуса
                     statusIcon.style.display = 'block';
                     
                     // Запускаем анимацию опускания плашки
                     card.classList.remove('animate');
                     setTimeout(() => {
-                        card.classList.add('voted');
+                        card.classList.add('status');
                     }, 10);
                 });
             });

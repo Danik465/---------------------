@@ -223,6 +223,10 @@
         .shot-icon {
             content: url("/icons/kill.svg");
         }
+
+        .removed-icon {
+            content: url("/icons/delete.svg"); /* Укажите правильный путь к иконке */
+        }
         
         .card.voted:hover, .card.shot:hover {
             transform: translateY(10px);
@@ -344,6 +348,10 @@
         
         .status-button.shot {
             background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            color: white;
+        }
+        .status-button.removed {
+            background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
             color: white;
         }
 
@@ -551,4 +559,20 @@
                 transform: translateY(10px);
                 color: #bdbdbd;
             }
+        }
+        /* Стили для статуса "Удален" */
+        .card.removed {
+            animation: moveDown 0.5s ease-out forwards;
+            filter: brightness(0.5);
+            opacity: 0.6;
+        }
+
+        .player-name.removed {
+            color: #666 !important;
+            transition: all 0.5s ease;
+            transform: translateY(5px);
+        }
+
+        .card.removed .player-name {
+            animation: nameMoveDown 0.5s ease-out forwards;
         }
