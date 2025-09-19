@@ -1,0 +1,554 @@
+@font-face {
+            font-family: "Breul-Grotesk";
+            src: url("/fonts/Fontspring-DEMO-breulgroteska-regular.otf") format("woff2");
+            font-display: swap;
+            font-style: normal;
+            font-weight: 200;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: rgba(0, 0, 0, 0);
+            color: #333;
+            min-height: 100vh;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .container {
+            width: 110%;
+            max-width: 1800px;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+            color: #2c3e50;
+            font-size: 2.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        .cards-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 10px;
+            position: relative;
+        }
+        
+        .card-wrapper {
+            flex: 1;
+            position: relative;
+            height: 150px;
+        }
+        
+        .card {
+            height: 155px;
+            width: 132px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.8rem;
+            transition: all 0.5s ease;
+            cursor: pointer;
+            overflow: hidden;
+            position: absolute;
+            bottom: 0;
+            transform: translateY(100%);
+            opacity: 0;
+            box-shadow: none;
+        }
+        
+        .card.animate {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+        
+        .card.voted {
+            animation: moveDown 0.5s ease-out forwards;
+            filter: brightness(0.7);
+            opacity: 0.8;
+        }
+        
+        .card.shot {
+            animation: moveDown 0.5s ease-out forwards;
+            filter: brightness(0.7);
+            opacity: 0.8;
+        }
+        
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        @keyframes moveDown {
+            0% {
+                transform: translateY(0);
+            }
+            100% {
+                transform: translateY(10px);
+            }
+        }
+        
+        .card img.background-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            image-rendering: high-quality;
+            -webkit-filter: drop-shadow(0px 0px 0px transparent);
+        }
+        
+        .card .card-text {
+            font-family: 'Breul-Grotesk';
+            font-weight: bold;
+            z-index: 2;
+            color: #f1f1f1ff;
+            font-family: 'Breul-Grotesk', sans-serif;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(51, 51, 51, 0.8);
+            transition: opacity 0.3s ease;
+            padding: 121px 125px 6px 16px;
+            background: none;
+            border: none;
+        }
+        
+        .role-icon {
+            position: absolute;
+            top: -29px;
+            right: 0px;
+            width: 30px;
+            height: 70px;
+            z-index: 20;
+            display: none;
+            filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.4));
+            animation: pulse 1.5s infinite alternate;
+        }
+        
+        .status-icon {
+            position: absolute;
+            top: -4px;
+            left: 6px;
+            width: 24px;
+            height: 40px;
+            z-index: 20;
+            display: none;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+        }
+
+        .mafia-card {
+            position: absolute;
+            top: 2px;
+            right: 89px;
+            width: 22px;
+            height: 27px;
+            z-index: 18;
+            display: none;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        .red-card {
+            background: linear-gradient(to bottom, #ff5f5f, #cc0000);
+            border: 2px solid #990000;
+        }
+        
+        .gray-card {
+            background: linear-gradient(to bottom, #e0e0e0, #a0a0a0);
+            border: 2px solid #707070;
+        }
+        
+        .yellow-card {
+            background: linear-gradient(to bottom, #ffeb3b, #fbc02d);
+            border: 2px solid #f57f17;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .role-icon.animate {
+            animation: iconSlideUp 0.7s ease-out forwards;
+        }
+        
+        @keyframes iconSlideUp {
+            from {
+                transform: translateY(100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        .sheriff-icon {
+            content: url("/Roles/Шериф.svg");
+        }
+        
+        .don-icon {
+            content: url("/Roles/Дон.svg");
+        }
+        
+        .voted-icon {
+            content: url("/icons/vote.svg");
+        }
+        
+        .shot-icon {
+            content: url("/icons/kill.svg");
+        }
+        
+        .card.voted:hover, .card.shot:hover {
+            transform: translateY(10px);
+        }
+        
+        .control-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            font-size: 1.8rem;
+        }
+        
+        .button-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .button-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .control-button {
+            height: 50px;
+            flex: 1;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .control-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50);
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 50%;
+        }
+        
+        .control-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .control-button.selected {
+            transform: translateY(-3px);
+            box-shadow: 0 0 0 3px white, 0 0 0 5px #3498db;
+        }
+        
+        .red-button {
+            background-color: #ff3b30;
+            background-image: linear-gradient(to bottom, #ff5e54, #e62e23);
+        }
+        
+        .black-button {
+            background-color: #000000;
+            background-image: linear-gradient(to bottom, #2c2c2c, #000000);
+        }
+        
+        .role-buttons-container, .status-buttons-container, .card-buttons-container, .reset-cards-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top:-30px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .role-button-row, .status-button-row, .card-button-row, .reset-card-button-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        
+        .role-button, .status-button, .card-button, .reset-card-button {
+            height: 40px;
+            flex: 1;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .role-button.sheriff {
+            background: linear-gradient(to bottom, #ffd700, #ffcc00);
+            color: #8b4513;
+        }
+        
+        .role-button.don {
+            background: linear-gradient(to bottom, #8b0000, #660000);
+            color: white;
+        }
+        
+        .status-button.voted {
+            background: linear-gradient(to bottom, #3498db, #2980b9);
+            color: white;
+        }
+        
+        .status-button.shot {
+            background: linear-gradient(to bottom, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .card-button.red {
+            background: linear-gradient(to bottom, #ff5f5f, #cc0000);
+            color: white;
+        }
+        
+        .card-button.gray {
+            background: linear-gradient(to bottom, #e0e0e0, #a0a0a0);
+            color: #333;
+        }
+        
+        .card-button.yellow {
+            background: linear-gradient(to bottom, #ffeb3b, #fbc02d);
+            color: #333;
+        }
+        
+        /* Новый стиль для кнопок сброса отдельных плашек */
+        .reset-card-button {
+            background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
+            color: white;
+        }
+        
+        .role-button:hover, .status-button:hover, .card-button:hover, .reset-card-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .role-button.selected, .status-button.selected, .card-button.selected {
+            transform: translateY(-2px);
+            box-shadow: 0 0 0 2px white, 0 0 0 4px #3498db;
+        }
+        
+        .reset-section {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .reset-button {
+            background: linear-gradient(to right, #3498db, #2980b9);
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .reset-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+        }
+        
+        @media (max-width: 1200px) {
+            .cards-row {
+                overflow-x: auto;
+                padding: 10px;
+            }
+            
+            .card-wrapper {
+                min-width: 150px;
+            }
+            
+            .button-row, .role-button-row, .status-button-row, .card-button-row, .reset-card-button-row {
+                overflow-x: auto;
+                padding-bottom: 10px;
+            }
+            
+            .control-button, .role-button, .status-button, .card-button, .reset-card-button {
+                min-width: 80px;
+            }
+        }
+
+        .name-select-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px solid #eee;
+        }
+        
+        .name-select-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 0px;
+        }
+        
+        .name-select-label {
+            font-weight: bold;
+            color: #2c3e50;
+            min-width: 5px;
+        }
+        
+        .name-select {
+            flex: 1;
+            height: 40px;
+            border: 2px solid #3498db;
+            border-radius: 6px;
+            padding: 0 10px;
+            font-size: 1rem;
+            background-color: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        
+        .name-select:hover {
+            border-color: #2980b9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .name-select:focus {
+            outline: none;
+            border-color: #2c3e50;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
+        }
+
+        .player-name {
+            position: absolute;
+            bottom: 11px;
+            left: -2px;
+            width: 100%;
+            text-align: center;
+            color: #f1f1f1ff;
+            font-weight: bold;
+            font-family: 'Breul-Grotesk', sans-serif;
+            font-size: 14px;
+            text-shadow: 1px 1px 2px rgba(51, 51, 51, 0.8);
+            z-index: 5;
+        }
+
+        .player-name.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin: 10px 0;
+            font-weight: bold;
+            display: none;
+        }
+
+
+        /* Анимация для появления имени */
+        .player-name {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.5s ease;
+        }
+
+        .player-name.animate {
+            opacity: 1;
+            transform: translateY(0);
+            transition-duration: 0.5s;
+            transition-delay: 0.5s;
+        }
+
+        /* Улучшенная анимация для плашек */
+        .card.animate {
+            animation: slideUp 0.5s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        /* Стили для анимированного имени при заголосовании/отстреле */
+        .player-name.voted,
+        .player-name.shot {
+            color: #bdbdbd !important;
+            transition: all 0.5s ease;
+            transform: translateY(10px);
+        }
+
+        /* Анимация для плашки с именем при заголосовании/отстреле */
+        .card.voted .player-name,
+        .card.shot .player-name {
+            animation: nameMoveDown 0.5s ease-out forwards;
+        }
+
+        @keyframes nameMoveDown {
+            0% {
+                transform: translateY(0);
+                color: #f1f1f1;
+            }
+            100% {
+                transform: translateY(10px);
+                color: #bdbdbd;
+            }
+        }
